@@ -243,14 +243,6 @@ th {
   color: #fff;
  }
 
-th.optional {
-  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-style:italic;
-  padding: 10px;
-  background: #373737;
-  color: #fff;
- }
-
 td {
   padding: 10px;
   border: 1px solid #373737;
