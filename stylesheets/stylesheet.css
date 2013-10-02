@@ -243,6 +243,11 @@ th {
   color: #fff;
  }
 
+th.optional {
+  font-style:italic;
+  border-color:white;
+}
+
 td {
   padding: 10px;
   border: 1px solid #373737;
