@@ -6,3 +6,4 @@ For information on how to join the project, see the project page at: tomhalstead
 
 Contributors:
 Jake Kosberg (node-)
+Jeffrey Thompson
