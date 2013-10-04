@@ -6,5 +6,7 @@ For information on how to join the project, see the project page at: tomhalstead
 
 Contributors:
 Jake Kosberg (node-)
+Sage Wang
 Jeffrey Thompson
 Eli Selkin
+
