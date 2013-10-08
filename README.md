@@ -17,8 +17,8 @@ Contributors:\[SPACE\]\[SPACE\]\[ENTER\](Your Name) will display:
 <br/>
 ####Contributors:
 Jake Kosberg (node-)  
-Sage Wang  
+Sage Wang 
 Jeffrey Thompson  
 Eli Selkin  
-Ken Luo
-  Kelvin Silva
+Ken Luo  
+Kelvin Silva
