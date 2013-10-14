@@ -1,7 +1,7 @@
 Physics Simulator
 =================
 
-For information on how to join the project, see the project page at: tomhalstead.github.io/physics-simulator
+For information on how to join the project, see the [project page](tomhalstead.github.io/physics-simulator).
 
 To display your name on a new line, add 2 spaces to the end of the previous line.
 
