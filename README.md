@@ -22,7 +22,7 @@ Jeffrey Thompson
 Eli Selkin  
 Ken Luo  
 Kelvin Silva  
-Luis Romero
+Luis Romero  
 Davina Boedijono
 
 
