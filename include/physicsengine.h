@@ -1,7 +1,7 @@
 #ifndef PHYSICSENGINE_H
 #define PHYSICSENGINE_H
 #include "PointMass.h"
-#include ".\Vector.h"
+#include "Vectors.h"
 #
 
 typedef vector<double> (*ForceFunction)(PointMass*,PointMass*);
