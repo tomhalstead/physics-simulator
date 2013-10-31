@@ -11,15 +11,14 @@ public:
     Vector& operator = (const Vector& RHS);
     Vector& operator += (const Vector& RHS);
     Vector& operator -= (const Vector& RHS);
-    Vector& operator *= (const Vector& RHS);
 //    Vector& operator ^= (const Vector& RHS);
     Vector operator + (const Vector& RHS) const;
     Vector operator - (const Vector& RHS) const;
-    Vector operator * (const Vector& RHS) const;
+    T operator * (const Vector& RHS) const;
 //    Vector operator ^ (const Vector& RHS) const;
-    Vector operator * (int C) const;
-    friend Vector operator *(int C, const RHS);
-    double Magnitude();
+    Vector& operator *=(T C);
+    friend Vector operator *(T C, const Vector& RHS);
+    T Magnitude();
     Vector& operator [](unsigned int index);
     const Vector& operator [](unsigned int index) const;
 private:
