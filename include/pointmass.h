@@ -24,3 +24,4 @@ private:
 };
 
 #endif // POINTMASS_H
+

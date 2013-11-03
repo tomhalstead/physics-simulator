@@ -37,3 +37,4 @@ class Vector3D:public Vector<T,3>
 
 
 #endif // VECTOR_H
+
