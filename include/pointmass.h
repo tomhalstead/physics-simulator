@@ -6,21 +6,22 @@
 class PointMass
 {
 public:
-    PointMass(Vector vel, Vector pos, double M);
+    PointMass(const Vector3D<double>& velocity, const Vector3D<double>& pos, double M);
     ~PointMass();
     PointMass(const PointMass& A);
     void setMass(double M);
-    void setVelocity(const Vector& Vel);
-    void Move(const Vector& Pos);
+    void setVelocity(const Vector3D<double>& velocity);
+    void Move(const Vector3D<double>& Pos);
     double getMass() const;
-    Vector getVelocity() const;
-    Vector Position() const;
+    Vector3D<double>& getVelocity() const;
+    Vector3D<double>& Position() const;
     void Move(float time);
-    void ApplyForce(const Vector& extra);
-    Vector NetForce() const;
-    void Restore(const Vector& newForce);
+    void ApplyForce(const Vector3D<double>& extra);
+    Vector3D<double>& NetForce() const;
+    void SetForce(const Vector3D<double>& newForce);
 private:
 
 };
 
 #endif // POINTMASS_H
+
