@@ -1,7 +1,7 @@
 #ifndef VECTORS_H
-#define Vectors_H
+#define VECTORS_H
 
-template <class T, unsigned int size>;
+template <class T, unsigned int size>
 class Vector
 {
 public:
