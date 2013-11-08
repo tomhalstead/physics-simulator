@@ -9,7 +9,7 @@
 #include ".\Connection.h"
 
 
-typedef Vector3D<double> (*ForceFunction)(PointMass*,PointMass*);
+typedef Vector3D<double> (*PairForce)(PointMass*,PointMass*);
 
 
 //Vector<double> UniversalGravityForce(PointMass* mass1, PointMass* mass2);
@@ -18,33 +18,42 @@ typedef Vector3D<double> (*ForceFunction)(PointMass*,PointMass*);
 class PhysicsEngine
 {
 public:
-    PhysicsEngine();
-    void Advance(double TimeSlice);
+	PhysicsEngine() {}  //must be loaded after initialization
 
-    /*
-    void AddForce(ForceFunction AddThis);
-    void RemoveForce(ForceFunction RemoveThis);
+	void Advance(double TimeSlice);
 
-    void AddConnection(Connection* AddThis);
-    void RemoveConnection(Connection* RemoveThis);
+	/*
+	void SetBaseForce(Vector3D<double>* BaseForce);
 
-    void AddPointMass(PointMass* AddThis);
-    void RemovePointMass(PointMass* RemoveThis);
+	void AddPointMass(PointMass* AddThis);
+	void RemovePointMass(PointMass* RemoveThis);
 
-    void SetCollisionEngine(CollisionEngine* Engine);
+	void AddForce(PairForce* AddThis);
+	void RemoveForce(PairForce* RemoveThis);
 
-    void SetBaseForece(Vector3D* BaseForce);
-    */ 
+	void AddConnection(Connection* AddThis);
+	void RemoveConnection(Connection* RemoveThis);
 
-    std::vector<PointMass> pointMasses;
-    std::vector<Connection> conections;
-    std::vector<Collision> collisions;
-    //std::vector<ForceFunction> pairForces; this doesn't work - "use of a class template requires a template arguement list" how is that a template?
-    ForceFunction* PairForce;   //for now one (Universal Gravitation) will suffice
-    CollisionEngine* CurrCollisionEngine;   //will we ever have more than one collision engine running at once?
-    Vector3D<double> baseForce;
-private:
-    double timeSlice;
+	void AddCollisionEngine(CollisionEngine* AddThis);
+	void RemoveCollisionEngine(CollisionEngine* RemoveThis);
+	*/
+
+	std::vector<PointMass*> pointMasses;
+	std::vector<Connection*> conections;
+	std::vector<Collision*> collisions;
+	std::vector<PairForce*> pairForces; 
+	std::vector<CollisionEngine*> collisionEngines;
+	//PairForce* PairForce;   //for now one (Universal Gravitation) will suffice
+	//CollisionEngine* CurrCollisionEngine;   //will we ever have more than one collision engine running at once?
+	Vector3D<double> baseForce;
+ private:
+	double timeSlice;
+//functions
+	void updateForces();
+	void findCollisions();
+	void resolveCollisions(); //advanceing time frame to the first collision, resolving it, then advancing to the next...
+
+	void movePointMasses(double timeToAdvance); //used by resolveCollisions() to advance the time frame
 };
 
 
@@ -54,7 +63,7 @@ e.AddForce(&UniversalGravityForce);
 
 vector<double> gforce;
 PointMass* mass1,mass2;
-ForceFunction force;
+PairForce force;
 gforce = (*force)(mass1,mass2);
 */
 
