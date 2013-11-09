@@ -11,27 +11,37 @@
 typedef Vector3D<double> (*PairForce)(PointMass*,PointMass*);
 typedef void (*BaseForce)(PointMass*);
 
-template <class T>
-class Iterator      //put outside PhysicsEngine class so it can be used outside the class to navigate objects held within.
+//put outside PhysicsEngine class so outside the class there can be instances of this to navigate objects held within.
+template <class T>  
+class Iterator       //built for vectors filled with pointers 
 {
 	friend class PhysicsEngine;
 	Iterator();
 	Iterator(Iterator<T>& CopyThis)
-	void Add(T AddThis);
-	void Remove(T RemoveThis);
-	T operator = (Iterator<T>& Rhs);
-	T operator [] (int Element); //set to Element'th object, if out of range we return NULL
-	T operator ++ ();    //returns Null if moved past last element
+	Iterator(std::vector<T>& Myvector);
+	void SetMyvector(std::vector<T>& Myvector);
+	void Add(T& AddThis);
+	T Remove(T& RemoveThis);
+	T Remove(Iterator<T>& RemoveThis);
+	void Delete(T& DeleteThis);
+	void Delete(Iterator<T>& DeleteThis);
+	T operator = (Iterator<T>& Rhs);  //set to the same as another Iterator (of same type)
+	T operator [] (int Element); //returns the Element'th element without changing our internal pointer, if out of range we return NULL
+	T operator ++ ();    //returns Null if moved past last element (this is true everywhere)
 	T operator ++ (int);
-	T operator -- ();    //returns Null if moved before first element
+	T operator -- ();    //returns Null if moved before first element (this is true everywhere)
 	T operator -- (int);
-	T First();
-	T Last();
-	operator T();  //returns a pointer to the currently selected object
+	T operator += (int Rhs);
+	T operator -= (int Rhs);
+	T operator + (int Rhs);
+	T operator - (int Rhs);
+	T First();  //set to first element
+	T Last();  //set to last element
+	T Item(int Element); //sets our internal pointer to the passed element
+	operator T();  //returns the currently selected element or NULL if out of range
 private:
-	std::vector<T>* myObject;
-	std::vector<T>::iterator i;
-	void setmyObject(std::vector<T>* MyObject);
+	std::vector<T>* myvector;
+	int i; 
 };
 
 
