@@ -7,18 +7,19 @@ class Vector
 {
 public:
     Vector(T* set);
-    Vector(const Vector& A);
-    ~Vector();
-    Vector<T,size>& operator = (const Vector<T,size>& RHS);
+    Vector(const T& A); // set <size> amount of 'A' in type T to Vector;
+    Vector(const Vector& A);// Big3
+    ~Vector();// Big3
+    Vector<T,size>& operator = (const Vector<T,size>& RHS); // Big3
     Vector<T,size>& operator += (const Vector<T,size>& RHS);
     Vector<T,size>& operator -= (const Vector<T,size>& RHS);
     Vector<T,size> operator + (const Vector<T,size>& RHS) const;
     Vector<T,size> operator - (const Vector<T,size>& RHS) const;
-    T operator * (const Vector<T,size>& RHS) const; // Dot product
+    T operator * (const Vector<T,size>& RHS) const; // Dot product, return a scalar
     Vector<T,size> operator * (const T& C) const; // scalar mutiplication
     Vector<T,size>& operator *=(const T& C); // Scalar mutiplication
-    friend Vector<T,size> operator *(const T& C, const Vector<T,size>& RHS);
-    T Magnitude();
+    friend Vector<T,size> operator *(const T& C, const Vector<T,size>& RHS); // scalar mutiplication
+    T Magnitude(); // return the size of Vector
     Vector<T,size>& operator [](unsigned int index);
     const Vector<T,size>& operator [](unsigned int index) const;
 private:
