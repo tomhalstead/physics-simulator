@@ -8,7 +8,7 @@ class Vector
 public:
     Vector(T* set);
     Vector(const T& A); // set <size> amount of 'A' in type T to Vector;
-    Vector(const Vector& A);// Big3
+    Vector(const Vector<T,size>& A);// Big3
     ~Vector();// Big3
     Vector<T,size>& operator = (const Vector<T,size>& RHS); // Big3
     Vector<T,size>& operator += (const Vector<T,size>& RHS);
