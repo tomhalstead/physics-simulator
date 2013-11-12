@@ -6,10 +6,8 @@
 class PointMass
 {
 public:
-    PointMass();
-    PointMass(double M); // take only mass and set position to (0,0,0)
     PointMass(const Vector3D<double>& pos);
-    PointMass(double M, const Vector3D<double>& pos, const Vector3D<double>& velocity);
+    PointMass(double M=0, const Vector3D<double>& pos=Vector3D<double>(0), const Vector3D<double>& vel=Vector3D<double>(0));
     ~PointMass();
     PointMass(const PointMass& A);
     void setMass(double M); //
@@ -25,6 +23,9 @@ public:
     Vector3D<double>& NetForce() const;// return the NetForce which relate from other PointMasses
     void setForce(const Vector3D<double>& newForce);// set a new force on the Pointmasses.
 private:
+    Vector3D<double> position;
+    Vector3D<double> velocity;
+    double mass;
 
 };
 
