@@ -29,11 +29,11 @@ public:
  private:
 	std::vector<PointMass*> pointMasses;  //our dynamic arrays of object pointers
 	std::vector<Connection*> connections;
-	std::vector<PairForce*> pairForces; 
+	std::vector<PairForce> pairForces; 
 	std::vector<Collision*> collisions;
 
 	CollisionEngine* collisionEngine;  //the engine we use
-	BaseForce* baseForceFunction;  //the base force function we use
+	BaseForce baseForceFunction;  //the base force function we use
 	double timeSlice;  //the timeslice we work through
 	
 //private functions used in Advance()
@@ -41,33 +41,30 @@ public:
 	void updateConnections();
 	void findCollisions();
 	void resolveCollisions(); //advanceing time frame to the first collision, resolving it, then advancing to the next...
-	void movePointMasses(double timeToAdvance); //used by resolveCollisions() to advance the time frame to the first collision
+	void movePointMasses(double timeToAdvance); //used by resolveCollisions() to advance the time frame to the next collision
 };
 
 
 template <class T>  
 class PhysicsEngine::Iterator       //built for vectors filled with pointers 
 {
-	Iterator();
+	Iterator(); //must be set by a operator = to be useful
 	Iterator(Iterator<T>& CopyThis);
-	Iterator(std::vector<T>& Myvector);
+	Iterator(std::vector<T>& Myvector);  //only physicsEngine can use this one (as only physics engine has access to the vectors)
 
 //these add or remove items to our vector
 	void Append(const T* AddThis); //append AddThis to the end of the vector  
-	T* Remove(T* const RemoveThis) const;  //remove the object from our vector and return it - shifts the following elements to fill any "holes" (non-const objects, const pointers)
-	T* Remove(Iterator<T>& RemoveThis) const;
-	T* Remove(int Element) const;
-	void Delete(T* const DeleteThis);   //remove the object and delete the memory allocation to it.
-	void Delete(Iterator<T>& DeleteThis);
-	void Delete(int Element);
+	void Delete(T* const DeleteThis);   //remove the object from our vector, inform connections of it's removal and delete the memory allocation to it.
+	void Delete(const Iterator<T>& DeleteThis);
+	void Delete(unsigned int Element);
 
 //these access the object we hold - as the vector holds pointers a further dereference(*) is needed to access the actual object (the pointers returned are const, but the object they point to are not)
 	T* operator * ()const;  //dereference to currently selected element - returns a pointer or NULL if out of range
-	T* operator [] (int Element)const; //returns the Element'th element without changing our internal pointing, if out of range we return NULL
+	T* operator [] (unsigned int Element)const; //returns the Element'th element without changing our internal pointing, if out of range we return NULL
 
 //these change the interal pointing of this iterator but do not modify the vector (if dereferenced, the items pointed to in returned pointers to can however be modified):
 	Iterator<T>& operator = (const Iterator<T>& Rhs);  //set to the same as another Iterator (of same type) 
-	Iterator<T>& SetTo(int Element); //sets our internal pointer to the number of passed element
+	Iterator<T>& SetTo(unsigned int Element); //sets our internal pointer to the number of passed element
 	Iterator<T>& operator ++ ();    //increment our internal pointing
 	Iterator<T> operator ++ (int);
 	Iterator<T>& operator -- ();    //decrement our internal pointing
@@ -82,8 +79,8 @@ class PhysicsEngine::Iterator       //built for vectors filled with pointers
 	Iterator<T> Last()const;  //returns a Iterator<t> set to last element 
 
 private:
-	std::vector<T*>* myvector;
-	int i; //never allowed to go below -1 or more than one past last last element(*myvector.size +1)
+	std::vector<T*>* myvector;  //the vector we track and access
+	int i; //never allowed to go below -1 or more than one past last last element(*myvector.size +1) - should be casted to unsigned int when actually accessing the vector
 };
 
 
