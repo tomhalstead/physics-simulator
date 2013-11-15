@@ -18,7 +18,7 @@ public:
 	template <class T> class Iterator;
 
 	void Advance(double TimeSlice);  //advance a sent time slice recalculating forces, trajectory and resolving any collisions
-	void SetBaseForce(BaseForce* BaseForceFunction); //set the function that sets the base force in our system
+	void SetBaseForce(BaseForce BaseForceFunction); //set the function that sets the base force in our system
 	void SetCollisionEngine(CollisionEngine* CollisionEngineObj); //set the collision engine (class) we use
 
 	template <class T> Iterator<PointMass> PointMasses;  //look at Iterator class declaration for how to use these
