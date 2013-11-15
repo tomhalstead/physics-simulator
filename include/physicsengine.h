@@ -64,13 +64,16 @@ class PhysicsEngine::Iterator       //built for vectors filled with pointers
 
 //these change the interal pointing of this iterator but do not modify the vector (if dereferenced, the items pointed to in returned pointers to can however be modified):
 	Iterator<T>& operator = (const Iterator<T>& Rhs);  //set to the same as another Iterator (of same type) 
-	Iterator<T>& SetTo(unsigned int Element); //sets our internal pointer to the number of passed element
 	Iterator<T>& operator ++ ();    //increment our internal pointing
 	Iterator<T> operator ++ (int);
 	Iterator<T>& operator -- ();    //decrement our internal pointing
 	Iterator<T> operator -- (int);
 	Iterator<T>& operator += (int Rhs); //change our pointing by the int sent
 	Iterator<T>& operator -= (int Rhs);
+	//if our internal pointing is moved out of range, dereference will only return NULL until reset by one of these three or a operator =
+	Iterator<T>& SetTo(unsigned int Element); //sets our internal pointer to the number of passed element
+	Iterator<T>& SetToFirst(); //sets our internal pointer to the first element [0]
+	Iterator<T>& SetToLast(); //sets our internal pointer to the last element [*myvector.size]
 
 //these do not change the internal pointing of this Iterator , nor the vector itself (if derefrenced, the items pointed to in returned pointers to can however be modified):
 	Iterator<T> operator + (int Rhs)const;  //returns
@@ -80,7 +83,7 @@ class PhysicsEngine::Iterator       //built for vectors filled with pointers
 
 private:
 	std::vector<T*>* myvector;  //the vector we track and access
-	int i; //never allowed to go below -1 or more than one past last last element(*myvector.size +1) - should be casted to unsigned int when actually accessing the vector
+	unsigned int i; //if moved out of valid range it must be reset by a SetTo or operator =. Until then the iterator will only return NULL
 };
 
 
