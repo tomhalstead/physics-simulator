@@ -1,5 +1,5 @@
-#ifndef PHYSICSENGINE_H
-#define PHYSICSENGINE_H
+#ifndef ITERATOR_H
+#define ITERATOR_H
 
 #include <vector>
 
