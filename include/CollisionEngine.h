@@ -3,15 +3,11 @@
 
 #include "Collision.h"
 
-
-
 class CollisionEngine : public CBase
 {
 public:
 	CollisionEngine() {}
 	//currently does nothing
-private:
-
 };
 
 #endif // COLLISIONENGINE_H
