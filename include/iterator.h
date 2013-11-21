@@ -3,27 +3,23 @@
 
 #include <vector>
 
-#include "Vectors.h"
-#include "PointMass.h"
-#include "CollisionEngine.h"
-#include "Connection.h"
-
-class PhysicsEngine;
-
 template <class T>  
-class PhysicsEngine::Iterator       //built for vectors filled with pointers 
+class Iterator       //built for dynamic arrays filled with pointers (our template is for the object however, not the object pointers)
 {
-	Iterator(); //must be set by a operator = to be useful
+	Iterator(); //must be set by a operator = afterwards to be useful
 	Iterator(Iterator<T>& CopyThis);
-	Iterator(std::vector<T>& Myvector);  //only physicsEngine can use this one (as only physics engine has access to the vectors)
+	Iterator(std::vector<T>& Myvector);  //should only be used in the original Iterator which has access to the private std::vector
 
-//these add or remove items to our vector
-	void Append(const T* AddThis); //append AddThis to the end of the vector  
-	void Delete(T* const DeleteThis);   //remove the object from our vector, inform connections of it's removal and delete the memory allocation to it.
-	void Delete(const Iterator<T>& DeleteThis);
+//these add or remove items to our dynamic array
+	void Append(const T* AddThis); //append AddThis to the end of the dynamic array  
+	void Delete(T* const DeleteThis);   //remove the object from our dynamic array, and delete the memory allocation to it.
+	void Delete(const Iterator<T>& DeleteThis);  //by other methods
 	void Delete(unsigned int Element);
+	void Clear();   //remove all elements from our dynamic array
+//deleting a pointmass can affect connections...  when we have connections we'll need to make a child class for PointMasses
 
 //these access the object we hold - as the vector holds pointers a further dereference(*) is needed to access the actual object (the pointers returned are const, but the object they point to are not)
+//both these will do a try/catch with a NULL being returned if a throw was caught.  *** No internal error checking ***
 	T* operator * ()const;  //dereference to currently selected element - returns a pointer or NULL if out of range
 	T* operator [] (unsigned int Element)const; //returns the Element'th element without changing our internal pointing, if out of range we return NULL
 
@@ -35,7 +31,7 @@ class PhysicsEngine::Iterator       //built for vectors filled with pointers
 	Iterator<T> operator -- (int);
 	Iterator<T>& operator += (int Rhs); //change our pointing by the int sent
 	Iterator<T>& operator -= (int Rhs);
-	//if our internal pointing is moved out of range, dereference will only return NULL until reset by one of these three or a operator =
+	//if our internal pointing is moved out of range, it can be reset by one of these three or a operator = 
 	Iterator<T>& SetTo(unsigned int Element); //sets our internal pointer to the number of passed element
 	Iterator<T>& SetToFirst(); //sets our internal pointer to the first element [0]
 	Iterator<T>& SetToLast(); //sets our internal pointer to the last element [*myvector.size]
@@ -45,10 +41,11 @@ class PhysicsEngine::Iterator       //built for vectors filled with pointers
 	Iterator<T> operator - (int Rhs)const;
 	Iterator<T> First()const;  //returns a Iterator<t> set to first element 
 	Iterator<T> Last()const;  //returns a Iterator<t> set to last element 
-
+	unsigned int Element()const;  //returns the element number we are pointing to
+	int Find(const T* FindThis);   //returns the element number for the object sent - returns -1 if not found
 private:
 	std::vector<T*>* myvector;  //the vector we track and access
-	unsigned int i; //if moved out of valid range it must be reset by a SetTo or operator =. Until then the iterator will only return NULL
+	unsigned int i; //our internal pointing value
 };
 
 
