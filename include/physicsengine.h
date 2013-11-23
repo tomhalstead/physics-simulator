@@ -28,7 +28,6 @@ public:
 	std::vector<Connection*> connections;
 	std::vector<PairForce> pairForces;
 
-
 	Collision* firstCollision;  //the first collision that happens
 	CollisionEngine* collisionEngine;  //the engine we use
 	BaseForce baseForceFunction;  //the base force function we use

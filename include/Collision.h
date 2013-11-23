@@ -13,6 +13,7 @@ class CBase  //base for CollisionEngine AND Connections - the basics needed for 
 public:
 	class Collision;
 	CBase() {}
+	~CBase() {}
 	virtual void ResolveCollision(Collision* ResolveMe) {}  //this is how collisions get resolved
 	virtual Collision* Detect(Iterator<PointMass>& PointMasses) {return NULL;} //returns a collision object if one needed - the soonest to occur collision
 		//in the case of Connections, if the Connection is "connected" at t=0 then do not generate a collision, go ahead and modify the PointMasses involved.
@@ -26,10 +27,9 @@ public:
 	bool operator < (const Collision& Rhs)const; //used in sorting
 	bool operator > (const Collision& Rhs)const;
 	
-	template <class T> Iterator<PointMass> PMinvolved; //add and access PointMasses involved here, look at Iterator class for how to use
 	double timeToCollision;  //as it says
-private:
 	std::vector<PointMass*> pmInvolved; //the dynamic array that holds the PointMass pointers
+private:
 	CRF whoResolvesMe; //function pointer
 };
 
