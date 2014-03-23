@@ -25,6 +25,7 @@ Big3, Assignment Op. []chk==, []del, []assign
 [ ] operator ^  // Cross Product returns vector // Can we overload the exclusive or?
 [ ] operator ^= // Cross Prod and assign
 
+
 ...
 
 CollisionEnging.cpp
@@ -62,6 +63,12 @@ iterator.h -- TO MOVE THROUGH VECTORS
 [ ] operator =       // ASSIGNMENT OPERATOR!!!!!!!!!!!!
 [ ] operator ++      // Change...
 [ ] operator ++(int) // Iterator's internal position
+[ ] operator --      // ...
+[ ] operator --(int) // ...
+[ ] operator +=(int) // Change internal pointing by (int)... ahead
+[ ] operator -=(int) //... or back
+
+...
 
 iterator.cpp
 ====
