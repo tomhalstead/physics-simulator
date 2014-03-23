@@ -29,7 +29,7 @@ private:
 template <class T>
 class Vector3D:public Vector<T,3>
 {
-    Vector3D<T> operator ^(const Vector3D<T>& RHS) const; // Cross Product // Can we overload the exclusive or?
+    Vector3D<T> operator ^(const Vector3D<T>& RHS) const; // Cross Product // Can we overload the bitwise exclusive or?
     Vector3D<T>& operator ^=(const Vector3D<T>& RHS);     // Cross
 
 };
