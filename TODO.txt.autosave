@@ -87,9 +87,22 @@ PointMass
 [ ] 2 Constructors
 [ ] Destructor
 [ ] Copy Constructor
-[ ]
+[ ] setMass
+-- TAKE VECTOR3D
+[ ] setVelocity
+[ ] Move
+[ ] ApplyForce
+[ ] setForce
+-- RETURN VECTOR3D
+[ ] getMass
+[ ] getVelocity
+[ ] Position
+[ ] CalculateTrajectory
+[ ] Advance /// WHY IS THERE PhysicsEngine Advance and this advance?
+[ ] getTrajectory
+[ ] NetForce
 
-
+...
 PhysicsEngine.cpp
 ====
 [ ] Advance -- increment time
