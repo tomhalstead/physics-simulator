@@ -1,5 +1,8 @@
 CHECKLIST PER FILE
 
+BASEFORCES are the types of forces
+
+
 Vector.cpp
 ====
 Constructors
@@ -46,7 +49,9 @@ UMM? NUDGE NUDGE?
 
 ...
 
-iterator.h -- TO MOVE THROUGH VECTORS
+iterator.cpp -- TO MOVE THROUGH VECTORS
+// BUT WHY NOT USE iterator.h in STL? it provides all these functions!!!
+
 ====
 [ ] Constructor #1 //must be set by a operator = to be useful
 [ ] Copy Constructor ... Big 3 #1
@@ -67,10 +72,23 @@ iterator.h -- TO MOVE THROUGH VECTORS
 [ ] operator --(int) // ...
 [ ] operator +=(int) // Change internal pointing by (int)... ahead
 [ ] operator -=(int) //... or back
+---
+[ ] SetTo(int el)    // since we are talking Random Access.. this allows placing the iterator at a certain element
+[ ] SetToFirst()     // Skip back (or forward?) to beginning
+[ ] SetToLast()      // SetTo(Last)
+
+[ ] operator + (like next), returns a new iterator... just like NEXT() in iterator.h!!!
+[ ] operator - (like prev), returns a new iterator... just like PREV() in iterator.h
 
 ...
-
-iterator.cpp
+PhysicsEngine.cpp
 ====
-
-
+[ ] Advance -- increment time
+[ ] SetBaseForce --
+[ ] SetCollisionEngine --
+---
+[ ] updatePairForces
+[ ] updateConnections
+[ ] findCollisions
+[ ] resolveCollisions
+[ ] movePointMasses

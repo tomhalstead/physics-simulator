@@ -29,7 +29,7 @@ class PhysicsEngine::Iterator       //built for vectors filled with pointers
 
 //these change the interal pointing of this iterator but do not modify the vector (if dereferenced, the items pointed to in returned pointers to can however be modified):
     Iterator<T>& operator = (const Iterator<T>& Rhs);  //set to the same as another Iterator (of same type)
-    Iterator<T>& operator ++ ();    //increment our internal pointing
+    Iterator<T>& operator ++ ();    //increment our internal pointing // WHY NOT USE ADVANCE ()??????????????
     Iterator<T> operator ++ (int);
     Iterator<T>& operator -- ();    //decrement our internal pointing
     Iterator<T> operator -- (int);
@@ -40,8 +40,8 @@ class PhysicsEngine::Iterator       //built for vectors filled with pointers
     Iterator<T>& SetToFirst(); //sets our internal pointer to the first element [0]
     Iterator<T>& SetToLast(); //sets our internal pointer to the last element [*myvector.size]
 
-//these do not change the internal pointing of this Iterator , nor the vector itself (if derefrenced, the items pointed to in returned pointers to can however be modified):
-    Iterator<T> operator + (int Rhs)const;  //returns
+    //these do not change the internal pointing of this Iterator , nor the vector itself (if dereferenced, the items pointed to in returned pointers to can however be modified): // i.e. like a *pointer
+    Iterator<T> operator + (int Rhs)const;  //returns // WHY NOT USE NEXT()????????????????????????????
     Iterator<T> operator - (int Rhs)const;
     Iterator<T> First()const;  //returns a Iterator<t> set to first element
     Iterator<T> Last()const;  //returns a Iterator<t> set to last element
