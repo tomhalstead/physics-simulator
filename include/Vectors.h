@@ -10,7 +10,7 @@ public:
     Vector(const T& A); // Sets <size> amount of 'A' (of type T) into Vector; // Like memset???
     Vector(const Vector<T,size>& A);// Big3
     ~Vector();// Big3, Destructor
-    Vector<T,size>& operator  = (const Vector<T,size>& RHS); //Big3, Assignment Op. []chk==, []del, []assign
+    Vector<T,size>& operator  = (const Vector<T,size>& RHS);
     Vector<T,size>& operator += (const Vector<T,size>& RHS);
     Vector<T,size>& operator -= (const Vector<T,size>& RHS);
     Vector<T,size>  operator  + (const Vector<T,size>& RHS) const; // Vector Translation
@@ -23,7 +23,7 @@ public:
     Vector<T,size>& operator [](unsigned int index);
     const Vector<T,size>& operator [](unsigned int index) const;
 private:
-    T* D;
+    T* D; // Data
 };
 
 template <class T>
@@ -37,5 +37,166 @@ class Vector3D:public Vector<T,3>
 
 
 
+//
+// TRY NOT TO CHANGE THE NUMBER OF LINES IN THE FUNCTIONS
+//
+
+template <class T, unsigned int size>
+Vector::Vector(T* set)
+{
+    // CONSTRUCTOR
+
+
+
+
+
+}
+
+
+
+
+
+template <class T, unsigned int size>
+Vector::Vector(const T& A)
+{
+    // CONSTRUCTOR
+
+
+
+
+}
+
+
+
+
+template <class T, unsigned int size>
+Vector::Vector(const Vector<T,size>& A)
+{
+    // COPY CONSTRUCTOR
+
+
+
+
+}
+
+
+
+template <class T, unsigned int size>
+Vector::~Vector()
+{
+    // DESTRUCTOR
+
+
+
+
+
+}
+
+
+template <class T, unsigned int size>
+Vector<T, size> &Vector::operator =(const Vector<T, size> &RHS)
+{
+    // ASSIGNMENT OPERATOR
+    // CHECK ==, DELETE, REASSIGN
+
+
+
+
+
+
+}
+
+template <class T, unsigned int size>
+Vector<T, size> &Vector::operator +=(const Vector<T, size> &RHS)
+{
+    // += Member Function
+
+
+
+
+
+
+}
+
+
+template <class T, unsigned int size>
+Vector<T, size> &Vector::operator -=(const Vector<T, size> &RHS)
+{
+    // -= Member Function
+
+
+
+}
+
+template <class T, unsigned int size>
+Vector<T, size> Vector::operator +(const Vector<T, size> &RHS) const
+{
+
+}
+
+template <class T, unsigned int size>
+Vector<T, size> Vector::operator -(const Vector<T, size> &RHS) const
+{
+
+}
+
+template <class T, unsigned int size>
+Vector<T, size> Vector::operator *(const T &C) const
+{
+
+}
+
+template <class T, unsigned int size>
+T Vector::Magnitude()
+{
+
+}
+
+template <class T, unsigned int size>
+Vector<T, size> &Vector::operator [](unsigned int index)
+{
+
+}
+
+template <class T, unsigned int size>
+const Vector<T, size> &Vector::operator [](unsigned int index) const
+{
+
+}
+
+template <class T, unsigned int size>
+Vector<T, size> &Vector::operator *=(const T &C)
+{
+
+}
+
+template <class T, unsigned int size>
+T Vector::operator *(const Vector<T, size> &RHS) const
+{
+
+}
+
+
+// FRIEND!
+template <class T, unsigned int size>
+Vector<T, size> operator *(const T &C, const Vector<T, size> &RHS)
+{
+
+}
+
+// 3D Vector!!!!!
+template <class T>
+Vector3D<T> Vector3D::operator ^(const Vector3D<T> &RHS) const
+{
+
+}
+
+template <class T>
+Vector3D<T> &Vector3D::operator ^=(const Vector3D<T> &RHS)
+{
+
+}
+
 #endif // VECTOR_H
+
 
