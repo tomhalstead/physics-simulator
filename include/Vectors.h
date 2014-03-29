@@ -1,4 +1,3 @@
-
 #ifndef VECTORS_H
 #define VECTORS_H
 
@@ -38,13 +37,15 @@ class Vector3D:public Vector<T,3>
 
 
 //
-// TRY NOT TO CHANGE THE NUMBER OF LINES IN THE FUNCTIONS
+// TRY NOT TO CHANGE THE NUMBER OF LINES IN THE FUNCTIONS. WE NEED TO KEEP TRACK OF LINES!
 //
 
 template <class T, unsigned int size>
 Vector::Vector(T* set)
 {
     // CONSTRUCTOR
+
+
 
 
 
@@ -64,6 +65,8 @@ Vector::Vector(const T& A)
 
 
 
+
+
 }
 
 
@@ -77,7 +80,12 @@ Vector::Vector(const Vector<T,size>& A)
 
 
 
+
+
+
 }
+
+
 
 
 
@@ -90,21 +98,31 @@ Vector::~Vector()
 
 
 
+
+
 }
+
+
 
 
 template <class T, unsigned int size>
 Vector<T, size> &Vector::operator =(const Vector<T, size> &RHS)
 {
-    // ASSIGNMENT OPERATOR
-    // CHECK ==, DELETE, REASSIGN
+    // 1. Check ==,
+    if (RHS == this)
+        return *this;
+    // 2. Delete,
+    for (int i = 0; i < size; i++)
+        RHS[i]=0; // Reset to 0
+    // 3. Reassign... from RHS to this, assured same T, size
+    for (int i = 0; i < size; i++)
+        this[i] = RHS[i];
 
-
-
-
-
-
+    return *this;
 }
+
+
+
 
 template <class T, unsigned int size>
 Vector<T, size> &Vector::operator +=(const Vector<T, size> &RHS)
@@ -116,7 +134,12 @@ Vector<T, size> &Vector::operator +=(const Vector<T, size> &RHS)
 
 
 
+
+
 }
+
+
+
 
 
 template <class T, unsigned int size>
@@ -126,29 +149,76 @@ Vector<T, size> &Vector::operator -=(const Vector<T, size> &RHS)
 
 
 
+
+
+
+
+
 }
+
+
+
 
 template <class T, unsigned int size>
 Vector<T, size> Vector::operator +(const Vector<T, size> &RHS) const
 {
+    //
+
+
+
+
+
+
+
 
 }
+
+
+
 
 template <class T, unsigned int size>
 Vector<T, size> Vector::operator -(const Vector<T, size> &RHS) const
 {
 
+
+
+
+
+
+
+
+
 }
+
+
+
 
 template <class T, unsigned int size>
 Vector<T, size> Vector::operator *(const T &C) const
 {
 
+
+
+
+
+
+
+
+
 }
+
+
+
 
 template <class T, unsigned int size>
 T Vector::Magnitude()
 {
+
+
+
+
+
+
 
 }
 
@@ -156,25 +226,62 @@ template <class T, unsigned int size>
 Vector<T, size> &Vector::operator [](unsigned int index)
 {
 
+
+
+
+
+
+
 }
 
 template <class T, unsigned int size>
 const Vector<T, size> &Vector::operator [](unsigned int index) const
 {
 
+
+
+
+
+
+
 }
+
+
+
 
 template <class T, unsigned int size>
 Vector<T, size> &Vector::operator *=(const T &C)
 {
 
+
+
+
+
+
+
+
+
 }
+
+
+
+
 
 template <class T, unsigned int size>
 T Vector::operator *(const Vector<T, size> &RHS) const
 {
 
+
+
+
+
+
+
+
 }
+
+
+
 
 
 // FRIEND!
@@ -182,18 +289,47 @@ template <class T, unsigned int size>
 Vector<T, size> operator *(const T &C, const Vector<T, size> &RHS)
 {
 
+
+
+
+
+
+
 }
+
+
+
+
 
 // 3D Vector!!!!!
 template <class T>
 Vector3D<T> Vector3D::operator ^(const Vector3D<T> &RHS) const
 {
 
+
+
+
+
+
+
+
 }
+
+
+
+
+
 
 template <class T>
 Vector3D<T> &Vector3D::operator ^=(const Vector3D<T> &RHS)
 {
+
+
+
+
+
+
+
 
 }
 
