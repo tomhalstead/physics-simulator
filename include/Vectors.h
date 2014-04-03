@@ -1,7 +1,6 @@
 #ifndef VECTORS_H
 #define VECTORS_H
 
-
 template <typename T, unsigned int size>
 class Vector
         // 'Vector' objects store 'size' elements (a 'size'-dimensional vector), with type 'T' variables to be stored
@@ -84,7 +83,7 @@ class Vector2D : public Vector<T,2>
         // The new constructor allows this constructor call:  Vector2D newVector(3.2, 4.5);
         // This can be useful when we need to pass a vector to a function, but don't have one already:
         //
-        // moveObject( Vector3D(3.2, 4.5) );
+        // moveObject( Vector2D(3.2, 4.5) );
         //
         // 'Vector2D' is easier to initialize than 'Vector' and is handy for representing 2-D quantities such as
         // position, velocity, force, etc.
@@ -120,40 +119,10 @@ class Vector3D : public Vector<T,3>
     // Cross Product
 };
 
-template <typename T>
-Vector::Vector(T *set)
+template <class T, unsigned int size>
+Vector::Vector(T* set)
 {
-
-
-
-
-
-
-
-
-}
-
-
-
-template <typename T>
-Vector::Vector(const T &defaultValue)
-{
-
-
-
-
-
-
-
-
-}
-
-
-
-template <typename T>
-Vector::Vector(const Vector<T, size> &other)
-{
-
+    // CONSTRUCTOR
 
 
 
@@ -166,10 +135,26 @@ Vector::Vector(const Vector<T, size> &other)
 
 
 
-template <typename T>
-Vector<T, size> &Vector::operator=(const Vector<T, size> &RHS)
-{
 
+template <class T, unsigned int size>
+Vector::Vector(const T& A)
+{
+    // CONSTRUCTOR
+
+
+
+
+
+
+}
+
+
+
+
+template <class T, unsigned int size>
+Vector::Vector(const Vector<T,size>& A)
+{
+    // COPY CONSTRUCTOR
 
 
 
@@ -182,10 +167,11 @@ Vector<T, size> &Vector::operator=(const Vector<T, size> &RHS)
 
 
 
-template <typename T>
+
+template <class T, unsigned int size>
 Vector::~Vector()
 {
-
+    // DESTRUCTOR
 
 
 
@@ -197,7 +183,8 @@ Vector::~Vector()
 
 
 
-template <typename T>
+
+template <class T, unsigned int size>
 double Vector::magnitude() const
 {
 
@@ -207,13 +194,13 @@ double Vector::magnitude() const
 
 
 
+
 }
 
 
 
 
-
-template <typename T>
+template <class T, unsigned int size>
 Vector<T, size> &Vector::operator[](unsigned int index)
 {
 
@@ -224,6 +211,82 @@ Vector<T, size> &Vector::operator[](unsigned int index)
 
 
 
+}
+
+
+
+
+template <class T, unsigned int size>
+const Vector<T, size> &Vector::operator[](unsigned int index) const
+{
+
+
+
+
+
+
+
+
+}
+
+
+
+
+template <class T, unsigned int size>
+Vector<T, size> &Vector::operator+=(const Vector<T, size> &RHS)
+{
+
+
+
+
+
+
+
+
+
+}
+
+
+
+template <class T, unsigned int size>
+Vector<T, size> &Vector::operator-=(const Vector<T, size> &RHS)
+{
+
+
+
+
+
+
+
+
+}
+
+
+
+
+template <class T, unsigned int size>
+Vector<T, size> &Vector::operator*=(const T &RHS)
+{
+
+
+
+
+
+
+
+}
+
+
+
+
+template <typename U>
+Vector<Vector::U, size> Vector::operator+(const Vector<Vector::U, size> &RHS, const Vector<Vector::U, size> &RHS)
+{
+
+
+
+
+
 
 }
 
@@ -231,7 +294,46 @@ Vector<T, size> &Vector::operator[](unsigned int index)
 
 
 
+template <typename U>
+Vector<Vector::U, size> Vector::operator-(const Vector<Vector::U, size> &RHS, const Vector<Vector::U, size> &RHS)
+{
+
+
+
+
+
+
+}
+
+
+
+
+
+template <typename U>
+Vector::U Vector::operator*(const Vector<Vector::U, size> &LHS, const Vector<Vector::U, size> &RHS)
+{
+
+
+
+
+
+
+}
+
+
+
+
+
+template <typename U>
+Vector<Vector::U, size> Vector::operator*(const Vector<Vector::U, size> &theVector, const Vector::U &theScalar)
+{
+
+
+
+
+
+
+
+}
 
 #endif // VECTOR_H
-
-
