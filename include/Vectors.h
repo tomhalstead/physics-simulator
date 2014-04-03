@@ -120,5 +120,118 @@ class Vector3D : public Vector<T,3>
     // Cross Product
 };
 
+template <typename T>
+Vector::Vector(T *set)
+{
+
+
+
+
+
+
+
+
+}
+
+
+
+template <typename T>
+Vector::Vector(const T &defaultValue)
+{
+
+
+
+
+
+
+
+
+}
+
+
+
+template <typename T>
+Vector::Vector(const Vector<T, size> &other)
+{
+
+
+
+
+
+
+
+
+}
+
+
+
+
+template <typename T>
+Vector<T, size> &Vector::operator=(const Vector<T, size> &RHS)
+{
+
+
+
+
+
+
+
+
+}
+
+
+
+
+template <typename T>
+Vector::~Vector()
+{
+
+
+
+
+
+
+
+
+}
+
+
+
+template <typename T>
+double Vector::magnitude() const
+{
+
+
+
+
+
+
+
+}
+
+
+
+
+
+template <typename T>
+Vector<T, size> &Vector::operator[](unsigned int index)
+{
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
 
 #endif // VECTOR_H
+
+
