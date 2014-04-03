@@ -17,17 +17,17 @@ class PhysicsEngine::Iterator       //built for vectors filled with pointers
     Iterator(Iterator<T>& CopyThis);
     Iterator(std::vector<T>& Myvector);  //only physicsEngine can use this one (as only physics engine has access to the vectors)
 
-//these add or remove items to our vector
+    //these add or remove items to our vector
     void Append(const T* AddThis); //append AddThis to the end of the vector
     void Delete(T* const DeleteThis);   //remove the object from our vector, inform connections of it's removal and delete the memory allocation to it.
     void Delete(const Iterator<T>& DeleteThis);
     void Delete(unsigned int Element);
 
-//these access the object we hold - as the vector holds pointers a further dereference(*) is needed to access the actual object (the pointers returned are const, but the object they point to are not)
+    //these access the object we hold - as the vector holds pointers a further dereference(*) is needed to access the actual object (the pointers returned are const, but the object they point to are not)
     T* operator * ()const;  //dereference to currently selected element - returns a pointer or NULL if out of range
     T* operator [] (unsigned int Element)const; //returns the Element'th element without changing our internal pointing, if out of range we return NULL
 
-//these change the interal pointing of this iterator but do not modify the vector (if dereferenced, the items pointed to in returned pointers to can however be modified):
+    //these change the interal pointing of this iterator but do not modify the vector (if dereferenced, the items pointed to in returned pointers to can however be modified):
     Iterator<T>& operator = (const Iterator<T>& Rhs);  //set to the same as another Iterator (of same type)
     Iterator<T>& operator ++ ();    //increment our internal pointing
     Iterator<T> operator  ++ (int);
