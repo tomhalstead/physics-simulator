@@ -51,6 +51,11 @@ public:
     // 'pointMasses' vector (in order to fulfill it's duties).
 
     void setGui(PhysicsGui *newPhysicsGui);
+    // Eli - 4/4/14
+    // make a derived class that inherits pointmass and is a GL pointmass that implements this type of interaction
+    // Then in that class you would have that one have extra params that could draw the objects based on the collision engine that would control size
+    // Collision would be the only thing that holds geometry
+
     // Setting the gui allows the physics engine to send messages to the GUI (such as when a problem occurs, or when
     // a collision occurs, if such notifications are written).
 
@@ -60,10 +65,15 @@ public:
 
     void addPointMass(PointMass *newPointMass);
     // Add a point mass to the universe / Physics Engine
+
     PointMass* removePointMass(unsigned int index);
+    // Eli - 4/4/14
+    // Suggestion to remove the remove function just because it may create memory leak opportunities
+
     // Remove a point mass from the universe / Physics Engine. DOES NOT DELETE THE POINT MASS!!! Instead, returns a pointer
     // to the removed point mass, just in case the caller of this function has to do something with the point mass before
     // it is deleted. If you want the point mass to be deleted... call the deletePointMass() function.
+    
     void deletePointMass(unsigned int index);
     // Deletes the point mass at index 'index' from the universe / physics engine.
 
