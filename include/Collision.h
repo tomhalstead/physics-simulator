@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "PointmMass.h"
-#include "iterator.h"
+#include "Iterator.h"
 
 class Collision;
 typedef void (*CRF)(Collision*); //Collision Resolution Function - passed the collision object it created
