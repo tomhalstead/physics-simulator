@@ -241,6 +241,7 @@ const Vector<T, size> &Vector::operator[](unsigned int index) const
 
 
 
+    return storage[index];
 
 }
 
@@ -268,6 +269,9 @@ template <class T, unsigned int size>
 Vector<T, size> &Vector::operator-=(const Vector<T, size> &RHS)
 {
 
+    for (int n = 0; n < size; ++n)
+        storage[n] -= RHS.storage[n];
+    return *this;
 
 
 
@@ -285,6 +289,9 @@ Vector<T, size> &Vector::operator*=(const T &RHS)
 {
 
 
+    for (int n = 0; n < size; ++n)
+        storage[n] *= RHS.storage[n];
+    return *this;
 
 
 
