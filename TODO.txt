@@ -1,0 +1,116 @@
+CHECKLIST PER FILE
+
+BASEFORCES are the types of forces
+
+
+Vector.cpp
+====
+Constructors
+#1 // what is set?
+#2 Sets <size> amount of 'A' (of type T) into Vector; // Like memset???
+#3 Big3
+
+Big3, Destructor
+Big3, Assignment Op. []chk==, []del, []assign
+
+[ ] operator +=
+[ ] operator -=
+[ ] operator  + // Vector Translation
+[ ] operator  - // Vector Translation
+[ ] operator  * // Scalar mutiplication
+[ ] operator *= // Scalar mutiplication
+[ ] operator  * // Dot product, This returns a scalar
+[ ] operator  * // #2 Scalar mutiplication
+[ ] Magnitude() // return the size of Vector
+[ ] operator [] // indexing brackets
+[ ] operator [] // reference as const! NON CHANGING
+---Vector3D
+[ ] operator ^  // Cross Product returns vector // Can we overload the exclusive or?
+[ ] operator ^= // Cross Prod and assign
+
+
+...
+
+CollisionEnging.cpp
+====
+[ ] CollisionEngine() // Constructor!
+
+...
+
+Connection.h
+====
+WHAT THE HECK?
+
+...
+
+Connection.cpp
+====
+UMM? NUDGE NUDGE?
+
+...
+
+iterator.cpp -- TO MOVE THROUGH VECTORS
+// BUT WHY NOT USE iterator.h in STL? it provides all these functions!!!
+
+====
+[ ] Constructor #1 //must be set by a operator = to be useful
+[ ] Copy Constructor ... Big 3 #1
+[ ] Constructor #3 //only physicsEngine can use this one (as only physics engine has access to the vectors)
+---
+[ ] Append to vector
+[ ] Delete #1 -- HOW CAN YOU DELETE EVEN WITH CONST?               ------- REF TO CONNECTIONS!!!!!!!!!!
+[ ] Delete #2 -- SAME Question
+[ ] Delete #3 -- element
+---
+[ ] Dereferencing operator * /// WHICH TYPE OF OBJ. VECTOR OR
+[ ] Dereferencing / indexing operator [] /// BY NOT CHANGING INTERNAL POINTING DOES IT MEAN THE OBJECT IS HOLDING AND INDEXING VALUE???
+---
+[ ] operator =       // ASSIGNMENT OPERATOR!!!!!!!!!!!!
+[ ] operator ++      // Change...
+[ ] operator ++(int) // Iterator's internal position
+[ ] operator --      // ...
+[ ] operator --(int) // ...
+[ ] operator +=(int) // Change internal pointing by (int)... ahead
+[ ] operator -=(int) //... or back
+---
+[ ] SetTo(int el)    // since we are talking Random Access.. this allows placing the iterator at a certain element
+[ ] SetToFirst()     // Skip back (or forward?) to beginning
+[ ] SetToLast()      // SetTo(Last)
+
+[ ] operator + (like next), returns a new iterator... just like NEXT() in iterator.h!!!
+[ ] operator - (like prev), returns a new iterator... just like PREV() in iterator.h
+
+...
+
+PointMass
+===
+[ ] 2 Constructors
+[ ] Destructor
+[ ] Copy Constructor
+[ ] setMass
+-- TAKE VECTOR3D
+[ ] setVelocity
+[ ] Move
+[ ] ApplyForce
+[ ] setForce
+-- RETURN VECTOR3D
+[ ] getMass
+[ ] getVelocity
+[ ] Position
+[ ] CalculateTrajectory
+[ ] Advance /// WHY IS THERE PhysicsEngine Advance and this advance?
+[ ] getTrajectory
+[ ] NetForce
+
+...
+PhysicsEngine.cpp
+====
+[ ] Advance -- increment time
+[ ] SetBaseForce --
+[ ] SetCollisionEngine --
+---
+[ ] updatePairForces
+[ ] updateConnections
+[ ] findCollisions
+[ ] resolveCollisions
+[ ] movePointMasses
