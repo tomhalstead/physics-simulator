@@ -1,5 +1,6 @@
 #ifndef VECTORS_H
 #define VECTORS_H
+#include <cmath>
 
 template <typename T, unsigned int size>
 class Vector
@@ -193,14 +194,15 @@ Vector::~Vector()
 template <class T, unsigned int size>
 double Vector::magnitude() const
 {
+    double sum = 0;
 
+    for (int i = 0; i<size; i++)
+    {
+        sum += pow(storage[i],2);
+    }
+    return sqrt(sum);
 
-
-
-
-
-
-
+    // leave space.
 }
 
 
