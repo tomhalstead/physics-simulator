@@ -144,6 +144,9 @@ Vector::Vector(const T& A)
 
 
 
+    storage = new T[size];
+    for(i = 0; i < size; i++)
+        storage[i] = A;
 
 
 
