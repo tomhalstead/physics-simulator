@@ -144,6 +144,9 @@ Vector::Vector(const T& A)
 
 
 
+    storage = new T[size];
+    for(i = 0; i < size; i++)
+        storage[i] = A;
 
 
 
@@ -204,13 +207,7 @@ template <class T, unsigned int size>
 Vector<T, size> &Vector::operator[](unsigned int index)
 {
 
-
-
-
-
-
-
-
+    return storage[index];
 }
 
 
@@ -238,8 +235,9 @@ Vector<T, size> &Vector::operator+=(const Vector<T, size> &RHS)
 
 
 
-
-
+    for (int n = 0; n < size; ++n)
+        storage[n] += RHS.storage[n];
+    return *this;
 
 
 
