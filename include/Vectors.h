@@ -207,13 +207,7 @@ template <class T, unsigned int size>
 Vector<T, size> &Vector::operator[](unsigned int index)
 {
 
-
-
-
-
-
-
-
+    return storage[index];
 }
 
 
