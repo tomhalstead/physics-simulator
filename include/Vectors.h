@@ -146,7 +146,7 @@ Vector::Vector(const T& A)
 
     storage = new T[size];
     for(i = 0; i < size; i++)
-        storage[i] = A;
+        storage[i] = A;   // A is a value of type T
 
 
 
@@ -159,12 +159,16 @@ template <class T, unsigned int size>
 Vector::Vector(const Vector<T,size>& A)
 {
     // COPY CONSTRUCTOR
-
-
-
-
-
-
+    if (this->storage == A.storage)
+        return *this;
+    if (this->storage != NULL)
+        delete [] this; // we are assuming size > 0
+    storage = new T[size]; // ensuring correct size of Vector values
+    for (int i = 0; i < size; i++)
+    {
+        this->storage[i] = A.storage[i];
+    }
+    return *this;
 
 }
 
