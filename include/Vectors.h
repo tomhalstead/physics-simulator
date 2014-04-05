@@ -123,11 +123,12 @@ template <class T, unsigned int size>
 Vector::Vector(T* set)
 {
     // CONSTRUCTOR
-
-
-
-
-
+    storage = new T[size]; // dynamic memory allocation of T type sequential memory
+    for (int i=0; i < size; i++)
+    {
+        // size is set with the template invocation as the number of elements of type T
+        storage[i] = set[i]; // storage is the private member variable of the Vector class
+    }
 
 
 }
@@ -172,11 +173,10 @@ template <class T, unsigned int size>
 Vector::~Vector()
 {
     // DESTRUCTOR
-
-
-
-
-
+    while (storage != NULL && size > 0)
+    {
+        delete [] storage; // is there a destroy PointMass callback?
+    }
 
 
 }
