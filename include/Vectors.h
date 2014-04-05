@@ -235,8 +235,9 @@ Vector<T, size> &Vector::operator+=(const Vector<T, size> &RHS)
 
 
 
-
-
+    for (int n = 0; n < size; ++n)
+        storage[n] += RHS.storage[n];
+    return *this;
 
 
 
