@@ -30,5 +30,3 @@ Luis Romero
 Davina Boedijono
 Tony Lim
 Francisco Franco
-
-
