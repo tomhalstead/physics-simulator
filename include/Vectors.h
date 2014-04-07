@@ -121,7 +121,7 @@ class Vector3D : public Vector<T,3>
 };
 
 template <class T, unsigned int size>
-Vector::Vector(T* set)
+Vector<T, size>::Vector(T* set)
 {
     // CONSTRUCTOR
     storage = new T[size]; // dynamic memory allocation of T type sequential memory
@@ -139,7 +139,7 @@ Vector::Vector(T* set)
 
 
 template <class T, unsigned int size>
-Vector::Vector(const T& A)
+Vector<T, size>::Vector(const T& A)
 {
     // CONSTRUCTOR
 
@@ -157,7 +157,7 @@ Vector::Vector(const T& A)
 
 
 template <class T, unsigned int size>
-Vector::Vector(const Vector<T,size>& A)
+Vector<T, size>::Vector(const Vector<T,size>& A)
 {
     // COPY CONSTRUCTOR
 
@@ -171,7 +171,7 @@ Vector::Vector(const Vector<T,size>& A)
 }
 
 
-Vector<T, size> &Vector::operator=(const Vector<T, size> &RHS)
+Vector<T, size> &Vector<T, size>::operator=(const Vector<T, size> &RHS)
 {
     // ASSIGNMENT OPERATOR
     if (this == RHS)
@@ -190,7 +190,7 @@ Vector<T, size> &Vector::operator=(const Vector<T, size> &RHS)
 
 
 template <class T, unsigned int size>
-Vector::~Vector()
+Vector<T, size>::~Vector()
 {
     // DESTRUCTOR
     while (storage != NULL && size > 0)
@@ -205,7 +205,7 @@ Vector::~Vector()
 
 
 template <class T, unsigned int size>
-double Vector::magnitude() const
+double Vector<T, size>::magnitude() const
 {
     double sum = 0;
 
@@ -222,7 +222,7 @@ double Vector::magnitude() const
 
 
 template <class T, unsigned int size>
-Vector<T, size> &Vector::operator[](unsigned int index)
+Vector<T, size> &Vector<T, size>::operator[](unsigned int index)
 {
 
     return storage[index];
@@ -232,7 +232,7 @@ Vector<T, size> &Vector::operator[](unsigned int index)
 
 
 template <class T, unsigned int size>
-const Vector<T, size> &Vector::operator[](unsigned int index) const
+const Vector<T, size> &Vector<T, size>::operator[](unsigned int index) const
 {
 
 
@@ -249,7 +249,7 @@ const Vector<T, size> &Vector::operator[](unsigned int index) const
 
 
 template <class T, unsigned int size>
-Vector<T, size> &Vector::operator+=(const Vector<T, size> &RHS)
+Vector<T, size> &Vector<T, size>::operator+=(const Vector<T, size> &RHS)
 {
 
 
@@ -266,7 +266,7 @@ Vector<T, size> &Vector::operator+=(const Vector<T, size> &RHS)
 
 
 template <class T, unsigned int size>
-Vector<T, size> &Vector::operator-=(const Vector<T, size> &RHS)
+Vector<T, size> &Vector<T, size>::operator-=(const Vector<T, size> &RHS)
 {
 
     for (int n = 0; n < size; ++n)
@@ -285,7 +285,7 @@ Vector<T, size> &Vector::operator-=(const Vector<T, size> &RHS)
 
 
 template <class T, unsigned int size>
-Vector<T, size> &Vector::operator*=(const T &RHS)
+Vector<T, size> &Vector<T, size>::operator*=(const T &RHS)
 {
 
 
@@ -303,7 +303,7 @@ Vector<T, size> &Vector::operator*=(const T &RHS)
 
 
 template <typename U>
-Vector<Vector::U, size> Vector::operator+(const Vector<Vector::U, size> &RHS, const Vector<Vector::U, size> &RHS)
+Vector<Vector::U, size> operator+(const Vector<Vector::U, size> &RHS, const Vector<Vector::U, size> &RHS)
 {
 
 
@@ -318,7 +318,7 @@ Vector<Vector::U, size> Vector::operator+(const Vector<Vector::U, size> &RHS, co
 
 
 template <typename U>
-Vector<Vector::U, size> Vector::operator-(const Vector<Vector::U, size> &RHS, const Vector<Vector::U, size> &RHS)
+Vector<Vector::U, size> operator-(const Vector<Vector::U, size> &RHS, const Vector<Vector::U, size> &RHS)
 {
 
 
@@ -333,7 +333,7 @@ Vector<Vector::U, size> Vector::operator-(const Vector<Vector::U, size> &RHS, co
 
 
 template <typename U>
-Vector::U Vector::operator*(const Vector<Vector::U, size> &LHS, const Vector<Vector::U, size> &RHS)
+Vector::U operator*(const Vector<Vector::U, size> &LHS, const Vector<Vector::U, size> &RHS)
 {
 
 
@@ -348,7 +348,7 @@ Vector::U Vector::operator*(const Vector<Vector::U, size> &LHS, const Vector<Vec
 
 
 template <typename U>
-Vector<Vector::U, size> Vector::operator*(const Vector<Vector::U, size> &theVector, const Vector::U &theScalar)
+Vector<Vector::U, size> operator*(const Vector<Vector::U, size> &theVector, const Vector::U &theScalar)
 {
 
 
