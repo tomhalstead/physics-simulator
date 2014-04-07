@@ -219,7 +219,21 @@ double Vector::magnitude() const
 }
 
 
+// dot product
+template <typename U>
+friend U operator*(const Vector<U,size>& LHS, const Vector<U,size>& RHS)
+{
 
+
+    double sum = 0;
+    for (int i = 0; i < size; i++)
+    {
+        sum = (LHS.storage[i] * RHS.storage[i] ) + sum;
+    }
+    return sum;
+
+
+}
 
 template <class T, unsigned int size>
 Vector<T, size> &Vector::operator[](unsigned int index)
