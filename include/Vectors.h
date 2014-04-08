@@ -303,7 +303,7 @@ Vector<T, size> &Vector<T, size>::operator*=(const T &RHS)
 
 
 template <typename U>
-Vector<Vector::U, size> operator+(const Vector<Vector::U, size> &RHS, const Vector<Vector::U, size> &RHS)
+Vector<U, size> operator+(const Vector<U, size> &RHS, const Vector<U, size> &RHS)
 {
 
 
@@ -318,7 +318,7 @@ Vector<Vector::U, size> operator+(const Vector<Vector::U, size> &RHS, const Vect
 
 
 template <typename U>
-Vector<Vector::U, size> operator-(const Vector<Vector::U, size> &RHS, const Vector<Vector::U, size> &RHS)
+Vector<U, size> operator-(const Vector<U, size> &RHS, const Vector<U, size> &RHS)
 {
 
 
@@ -333,7 +333,7 @@ Vector<Vector::U, size> operator-(const Vector<Vector::U, size> &RHS, const Vect
 
 
 template <typename U>
-Vector::U operator*(const Vector<Vector::U, size> &LHS, const Vector<Vector::U, size> &RHS)
+Vector<U> operator*(const Vector<U, size> &LHS, const Vector<U, size> &RHS)
 {
 
 
@@ -348,7 +348,7 @@ Vector::U operator*(const Vector<Vector::U, size> &LHS, const Vector<Vector::U, 
 
 
 template <typename U>
-Vector<Vector::U, size> operator*(const Vector<Vector::U, size> &theVector, const Vector::U &theScalar)
+Vector<U, size> operator*(const Vector<U, size> &theVector, const U &theScalar)
 {
 
 
@@ -358,5 +358,112 @@ Vector<Vector::U, size> operator*(const Vector<Vector::U, size> &theVector, cons
 
 
 }
+
+
+
+template <typename U>
+Vector<U, size> operator*(const U &theScalar, const Vector<U, size> &theVector)
+{
+
+
+
+
+
+
+
+}
+
+
+///////////////////////
+// 2D and 3D Derived Vector Classes
+//////////////////////
+
+template <typename T>
+Vector2D<T>::Vector2D(T *set): Vector<T, 2>(T* set)
+{
+    // Intentionally Left Blank, call for parent constructor above
+}
+
+template <typename T>
+Vector2D::Vector2D(const T &defaultValue) : Vector<T>( defaultValue )
+{
+    // Intentionally Left Blank, call for parent constructor above
+}
+
+template <typename T>
+Vector2D::Vector2D(const T &value1, const T &value2): Vector<T,2>()
+{
+
+
+
+
+
+    // SOMEONE FIGURE OUT HOW TO INITIALIZE THE MEMBER POINTER OF Vector with 2 or 3 items
+}
+
+
+
+
+template <typename T>
+Vector3D::Vector3D(T *set): Vector(T* set)
+{
+    // Intentionally Left Blank, call for parent constructor above
+}
+
+template <typename T>
+Vector3D::Vector3D(const T &defaultValue): Vector<T, 3>( defaultValue )
+{
+    // Intentionally Left Blank, call for parent constructor above
+}
+
+
+
+template <typename T>
+Vector3D::Vector3D(const T &value1, const T &value2, const T &value3)
+{
+
+
+
+
+
+
+    // SOMEONE FIGURE OUT HOW TO INITIALIZE THE MEMBER POINTER OF Vector with 2 or 3 items
+}
+
+
+template <typename T>
+Vector3D<T> &Vector3D::operator^=(const Vector3D<T> &RHS)
+{
+
+
+
+
+
+
+
+
+}
+
+
+
+
+template <typename U>
+Vector3D<U> operator^(const Vector3D<U> &LHS, const Vector3D<U> &RHS)
+{
+
+
+
+
+
+
+
+
+
+}
+
+
 
 #endif // VECTOR_H
+
+
+
