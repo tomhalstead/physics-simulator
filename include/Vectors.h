@@ -225,6 +225,7 @@ template <class T, unsigned int size>
 Vector<T, size> &Vector<T, size>::operator[](unsigned int index)
 {
 
+
     return storage[index];
 }
 
@@ -394,9 +395,8 @@ template <typename T>
 Vector2D::Vector2D(const T &value1, const T &value2): Vector<T,2>()
 {
 
-
-
-
+    (*this)[0] = value1;
+    (*this)[1] = value2; // because (*ptr) derefencing must happen before []
 
     // SOMEONE FIGURE OUT HOW TO INITIALIZE THE MEMBER POINTER OF Vector with 2 or 3 items
 }
@@ -413,6 +413,8 @@ Vector3D::Vector3D(T *set): Vector(T* set)
 template <typename T>
 Vector3D::Vector3D(const T &defaultValue): Vector<T, 3>( defaultValue )
 {
+
+
     // Intentionally Left Blank, call for parent constructor above
 }
 
@@ -423,11 +425,11 @@ Vector3D::Vector3D(const T &value1, const T &value2, const T &value3)
 {
 
 
-
-
-
-
+    (*this)[0] = value1;
+    (*this)[1] = value1;
+    (*this)[2] = value3; // because (*ptr) derefencing must happen before []
     // SOMEONE FIGURE OUT HOW TO INITIALIZE THE MEMBER POINTER OF Vector with 2 or 3 items
+
 }
 
 
