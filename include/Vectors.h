@@ -219,7 +219,7 @@ double Vector<T, size>::magnitude() const
 }
 
 
-// dot product
+// dot product ****************************** we need to return a type U.
 template <typename U>
 friend U operator*(const Vector<U,size>& LHS, const Vector<U,size>& RHS)
 {
@@ -365,11 +365,12 @@ Vector<U> operator*(const Vector<U, size> &LHS, const Vector<U, size> &RHS)
 template <typename U>
 Vector<U, size> operator*(const Vector<U, size> &theVector, const U &theScalar)
 {
-
-
-
-
-
+    Vector<U,size> temp;
+    for (int i = 0; i < size; i++)
+    {
+        temp[0] = theScalar * theVector[i];
+    }
+    return temp;
 
 
 }
@@ -379,12 +380,12 @@ Vector<U, size> operator*(const Vector<U, size> &theVector, const U &theScalar)
 template <typename U>
 Vector<U, size> operator*(const U &theScalar, const Vector<U, size> &theVector)
 {
-
-
-
-
-
-
+    Vector<U,size> temp;
+    for (int i = 0; i <size; i++)
+    {
+        temp[i] = theScalar * theVector[i];
+    }
+    return temp;
 
 }
 
@@ -447,15 +448,17 @@ Vector3D::Vector3D(const T &value1, const T &value2, const T &value3)
 }
 
 
+
 template <typename T>
 Vector3D<T> &Vector3D::operator^=(const Vector3D<T> &RHS)
 {
-
-
-
-
-
-
+    // a = axb
+    Vector3D<T> temp(*this);  // assuming we have copy constructor for vector 3d
+    // AxB = (AyBz - AzBy)i + (AzBx - AxBz)j + (AxBy - AyBx)k
+    (*this)[0] = (temp[1] * RHS[2]) - (temp[2] * RHS[1]);
+    (*this)[0] = (temp[2] * RHS[0]) - (temp[0] * RHS[2]);
+    (*this)[0] = (temp[0] * RHS[1]) - (temp[1] * RHS[0]);
+    return(*this);
 
 
 }
@@ -466,12 +469,13 @@ Vector3D<T> &Vector3D::operator^=(const Vector3D<T> &RHS)
 template <typename U>
 Vector3D<U> operator^(const Vector3D<U> &LHS, const Vector3D<U> &RHS)
 {
-
-
-
-
-
-
+    //c = axb
+    Vector3D<U> temp;
+    // AxB = (AyBz - AzBy)i + (AzBx - AxBz)j + (AxBy - AyBx)k
+    temp[0] = (LHS[1] * RHS[2]) - (LHS[2] * RHS[1]);
+    temp[1] = (LHS[2] * RHS[0]) - (LHS[0] * RHS[2]);
+    temp[2] = (LHS[0] * RHS[1]) - (LHS[1] * RHS[0]);
+    return temp;
 
 
 
