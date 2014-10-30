@@ -16,9 +16,9 @@ public:
     double getMass() const;// return the mass of the Masspoint
     Vector3D<double>& getVelocity() const;// return velocity of the pointmass in a vector
     Vector3D<double>& Position() const;// return position of the Pointmass in a vector
-    Vector3D<double>& CalculateTrajectory(double time);// calculate the pass in a specific time; calculate the collision between different Pointmasses
+    Vector3D<double>& CalculateDisplacement(double time);// calculate the pass in a specific time; calculate the collision between different Pointmasses
     Vector3D<double>&Advance(double time);//  moving particle along for certain time
-    Vector3D<double>& getTrajectory() const;// return the pass in a vector
+    Vector3D<double>& getDisplacement() const;// return the pass in a vector
     void ApplyForce(const Vector3D<double>& extra);// put a extra force on PointMass;
     Vector3D<double>& NetForce() const;// return the NetForce which relate from other PointMasses
     void setForce(const Vector3D<double>& newForce);// set a new force on the Pointmasses.
