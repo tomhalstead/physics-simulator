@@ -3,7 +3,6 @@
 #define PHYSICSENGINE_H
 
 #include <vector>
-
 #include "Vectors.h"
 #include "PointMass.h"
 #include "PhysicsGui.h"
@@ -27,7 +26,7 @@ class PhysicsEngine
 public:
     PhysicsEngine();
 
-    void setGravityField(const Vector3D<double> &newGravityField);
+    void setGravityField(const Vectors::Vector3D<double> &newGravityField);
 
     const Vector3D<double>& getGravityField();
     // The gravity field is a universal acceleration due to gravity (represented by 'gravityField' internally).
@@ -82,7 +81,7 @@ public:
 
 private:
     std::vector<PointMass*> pointMasses;
-    Vector3D<double> gravityField;
+    Vectors::Vector3D<double> gravityField;
     CollisionEngine *collisionEngine;
     PhysicsGui *physicsGui;
 };
