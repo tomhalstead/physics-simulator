@@ -2,7 +2,10 @@
 #define VECTOR_H
 #include <cmath>
 namespace Vectors {
-    template <typename T, unsigned int size>
+    typedef std::size_t size_type;
+
+
+    template <typename T, size_type size>
     class Vector
             // 'Vector' objects store 'size' elements (a 'size'-dimensional vector), with type 'T' variables to be stored
             // in each element. If 'T' is a pointer type all data that the elements point to will be deleted
@@ -44,28 +47,23 @@ namespace Vectors {
 
         double magnitude() const;
 
-        Vector<T,size>& operator[](unsigned int index);
-        const Vector<T,size>& operator[](unsigned int index) const;
+        Vector<T,size>& operator[](size_type index);
+        const Vector<T,size>& operator[](size_type index) const;
 
-        Vector<T,size>& operator+=(const Vector<T,size>& RHS);
-        Vector<T,size>& operator-=(const Vector<T,size>& RHS);
+        Vector<T,size>& operator+=(const Vector<T,size> &RHS);
+        Vector<T,size>& operator-=(const Vector<T,size> &RHS);
 
-        template <typename U>
-        friend Vector<U,size> operator+(const Vector<U,size>& RHS, const Vector<U,size>& RHS);
+        Vector<T,size> operator+(const Vector<T,size> &RHS) const;
+        Vector<T,size> operator-(const Vector<T,size> &RHS) const;
 
-        template <typename U>
-        friend Vector<U,size> operator-(const Vector<U,size>& RHS, const Vector<U,size>& RHS);
-
-        template <typename U>
-        friend U operator*(const Vector<U,size>& LHS, const Vector<U,size>& RHS);
+        T operator*(const Vector<T,size>& RHS) const;
         // Dot Product
 
-        template <typename U>
-        friend Vector<U,size> operator*(const Vector<U,size>& theVector, const U& theScalar);
+        Vector<T,size> operator*(const T& scalar);
         // Scalar Multiplication
 
-        template <typename U>
-        friend Vector<U,size> operator*(const U& theScalar, const Vector<U,size>& theVector);
+        template <typename U, size_type sz>
+        friend Vector<U,sz> operator*(const U& scalar, const Vector<U,sz>& vector);
         // Scalar mutiplication
 
         Vector<T,size>& operator*=(const T& RHS);
@@ -76,7 +74,7 @@ namespace Vectors {
         T* storage;
     };
 
-    template <class T, unsigned int size>
+    template <class T, size_type size>
     Vector<T, size>::Vector(T* set)
     {
         // CONSTRUCTOR
@@ -94,7 +92,7 @@ namespace Vectors {
 
 
 
-    template <class T, unsigned int size>
+    template <class T, size_type size>
     Vector<T, size>::Vector(const T& A)
     {
         // CONSTRUCTOR
@@ -102,17 +100,15 @@ namespace Vectors {
 
 
         storage = new T[size];
-        for(i = 0; i < size; i++)
+        for(size_type i = 0; i < size; i++)
             storage[i] = A;   // A is a value of type T
-
-
 
     }
 
 
 
 
-    template <class T, unsigned int size>
+    template <class T, size_type size>
     Vector<T, size>::Vector(const Vector<T,size>& A)
     {
         // COPY CONSTRUCTOR
@@ -126,7 +122,7 @@ namespace Vectors {
 
     }
 
-
+    template <class T, size_type size>
     Vector<T, size> &Vector<T, size>::operator=(const Vector<T, size> &RHS)
     {
         // ASSIGNMENT OPERATOR
@@ -145,11 +141,11 @@ namespace Vectors {
 
 
 
-    template <class T, unsigned int size>
+    template <class T, size_type size>
     Vector<T, size>::~Vector()
     {
         // DESTRUCTOR
-        while (storage != NULL && size > 0)
+        if (storage != NULL && size > 0)
         {
             delete [] storage; // is there a destroy PointMass callback?
         }
@@ -160,7 +156,7 @@ namespace Vectors {
 
 
 
-    template <class T, unsigned int size>
+    template <class T, size_type size>
     double Vector<T, size>::magnitude() const
     {
         double sum = 0;
@@ -175,24 +171,23 @@ namespace Vectors {
     }
 
 
-    // dot product ****************************** we need to return a type U.
-    template <typename U>
-    friend U operator*(const Vector<U,size>& LHS, const Vector<U,size>& RHS)
+    template <typename T, size_t size>
+    T Vector<T,size>::operator*(const Vector<T,size>& RHS) const
     {
 
 
-        double sum = 0;
-        for (int i = 0; i < size; i++)
+        T sum = 0;
+        for (size_type i = 0; i < size; i++)
         {
-            sum = (LHS.storage[i] * RHS.storage[i] ) + sum;
+            sum = (storage[i] * RHS.storage[i] ) + sum;
         }
         return sum;
 
 
     }
 
-    template <class T, unsigned int size>
-    Vector<T, size> &Vector<T, size>::operator[](unsigned int index)
+    template <class T, size_type size>
+    Vector<T, size> &Vector<T, size>::operator[](size_type index)
     {
 
 
@@ -202,8 +197,8 @@ namespace Vectors {
 
 
 
-    template <class T, unsigned int size>
-    const Vector<T, size> &Vector<T, size>::operator[](unsigned int index) const
+    template <class T, size_type size>
+    const Vector<T, size> &Vector<T, size>::operator[](size_type index) const
     {
 
 
@@ -219,7 +214,7 @@ namespace Vectors {
 
 
 
-    template <class T, unsigned int size>
+    template <class T, size_type size>
     Vector<T, size> &Vector<T, size>::operator+=(const Vector<T, size> &RHS)
     {
 
@@ -236,7 +231,7 @@ namespace Vectors {
 
 
 
-    template <class T, unsigned int size>
+    template <class T, size_type size>
     Vector<T, size> &Vector<T, size>::operator-=(const Vector<T, size> &RHS)
     {
 
@@ -255,7 +250,7 @@ namespace Vectors {
 
 
 
-    template <class T, unsigned int size>
+    template <class T, size_type size>
     Vector<T, size> &Vector<T, size>::operator*=(const T &RHS)
     {
 
@@ -273,8 +268,8 @@ namespace Vectors {
 
 
 
-    template <typename U>
-    Vector<U, size> operator+(const Vector<U, size> &RHS, const Vector<U, size> &RHS)
+    template<typename T, size_type size>
+    Vector<T, size> Vector<T,size>::operator+(const Vector<T, size> &RHS) const
     {
 
 
@@ -288,8 +283,8 @@ namespace Vectors {
 
 
 
-    template <typename U>
-    Vector<U, size> operator-(const Vector<U, size> &RHS, const Vector<U, size> &RHS)
+    template <typename T, size_type size>
+    Vector<T, size> Vector<T,size>::operator-(const Vector<T, size> &RHS) const
     {
 
 
@@ -302,29 +297,13 @@ namespace Vectors {
 
 
 
-
-    template <typename U>
-    Vector<U> operator*(const Vector<U, size> &LHS, const Vector<U, size> &RHS)
+    template <typename T, size_type size>
+    Vector<T, size> Vector<T,size>::operator*(const T &theScalar)
     {
-
-
-
-
-
-
-    }
-
-
-
-
-
-    template <typename U>
-    Vector<U, size> operator*(const Vector<U, size> &theVector, const U &theScalar)
-    {
-        Vector<U,size> temp;
-        for (int i = 0; i < size; i++)
+        Vector<T,size> temp;
+        for (size_type i = 0; i < size; i++)
         {
-            temp[0] = theScalar * theVector[i];
+            temp[i] = theScalar * storage[i];
         }
         return temp;
 
@@ -333,11 +312,11 @@ namespace Vectors {
 
 
 
-    template <typename U>
-    Vector<U, size> operator*(const U &theScalar, const Vector<U, size> &theVector)
+    template <typename T, size_type size>
+    Vector<T, size> operator*(const T &theScalar, const Vector<T, size> &theVector)
     {
-        Vector<U,size> temp;
-        for (int i = 0; i <size; i++)
+        Vector<T,size> temp;
+        for (size_type i = 0; i <size; i++)
         {
             temp[i] = theScalar * theVector[i];
         }

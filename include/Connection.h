@@ -3,7 +3,7 @@
 
 #include "Collision.h"
 
-class Connection : public CBase
+class Connection : public CollisionHandler
 {
 	Connection() {}
 	//currently does nothing

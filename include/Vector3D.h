@@ -21,20 +21,18 @@ namespace Vectors {
         Vector3D(T* set);
         Vector3D(const T& defaultValue = T());
         Vector3D(const T& value1, const T& value2, const T &value3);
-
-        template <typename U>
-        friend Vector3D<U> operator^(const Vector3D<U>& LHS, const Vector3D<U>& RHS); // Cross Product
+        Vector3D<T> operator^(const Vector3D<T>& RHS); // Cross Product
         Vector3D<T>& operator^=(const Vector3D<T>& RHS); // Cross Product w/Assignment
     };
 
     template <typename T>
-    Vector3D::Vector3D(T *set): Vector(T* set)
+    Vector3D<T>::Vector3D(T *set): Vector<T,3>(set)
     {
         // Intentionally Left Blank, call for parent constructor above
     }
 
     template <typename T>
-    Vector3D::Vector3D(const T &defaultValue): Vector<T, 3>( defaultValue )
+    Vector3D<T>::Vector3D(const T &defaultValue): Vector<T, 3>( defaultValue )
     {
 
 
@@ -42,7 +40,7 @@ namespace Vectors {
     }
 
     template <typename T>
-    Vector3D::Vector3D(const T &value1, const T &value2, const T &value3)
+    Vector3D<T>::Vector3D(const T &value1, const T &value2, const T &value3)
     {
 
 
@@ -54,7 +52,7 @@ namespace Vectors {
     }
 
     template <typename T>
-    Vector3D<T> &Vector3D::operator^=(const Vector3D<T> &RHS)
+    Vector3D<T>& Vector3D<T>::operator^=(const Vector3D<T> &RHS)
     {
         // a = axb
         Vector3D<T> temp(*this);  // assuming we have copy constructor for vector 3d
@@ -66,15 +64,15 @@ namespace Vectors {
 
     }
 
-    template <typename U>
-    Vector3D<U> operator^(const Vector3D<U> &LHS, const Vector3D<U> &RHS)
+    template <typename T>
+    Vector3D<T> Vector3D<T>::operator^(const Vector3D<T> &RHS)
     {
         //c = axb
-        Vector3D<U> temp;
+        Vector3D<T> temp;
         // AxB = (AyBz - AzBy)i + (AzBx - AxBz)j + (AxBy - AyBx)k
-        temp[0] = (LHS[1] * RHS[2]) - (LHS[2] * RHS[1]);
-        temp[1] = (LHS[2] * RHS[0]) - (LHS[0] * RHS[2]);
-        temp[2] = (LHS[0] * RHS[1]) - (LHS[1] * RHS[0]);
+        temp[0] = ((*this)[1] * RHS[2]) - ((*this)[2] * RHS[1]);
+        temp[1] = ((*this)[2] * RHS[0]) - ((*this)[0] * RHS[2]);
+        temp[2] = ((*this)[0] * RHS[1]) - ((*this)[1] * RHS[0]);
         return temp;
 
     }

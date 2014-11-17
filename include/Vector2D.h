@@ -24,25 +24,24 @@ namespace Vectors {
 
 
     template <typename T>
-    Vector2D<T>::Vector2D(T *set): Vector<T, 2>(T* set)
+    Vector2D<T>::Vector2D(T *set): Vector<T, 2>(set)
     {
         // Intentionally Left Blank, call for parent constructor above
     }
 
     template <typename T>
-    Vector2D::Vector2D(const T &defaultValue) : Vector<T>( defaultValue )
+    Vector2D<T>::Vector2D(const T &defaultValue) : Vector<T,2>( defaultValue )
     {
         // Intentionally Left Blank, call for parent constructor above
     }
 
     template <typename T>
-    Vector2D::Vector2D(const T &value1, const T &value2): Vector<T,2>()
+    Vector2D<T>::Vector2D(const T &value1, const T &value2)
     {
 
         (*this)[0] = value1;
-        (*this)[1] = value2; // because (*ptr) derefencing must happen before []
+        (*this)[1] = value2;
 
-        // SOMEONE FIGURE OUT HOW TO INITIALIZE THE MEMBER POINTER OF Vector with 2 or 3 items
     }
 }
 
