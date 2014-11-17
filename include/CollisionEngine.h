@@ -14,6 +14,7 @@ namespace PhysicsEngine {
     {
     public:
         CollisionHandler() {}
+        virtual ~CollisionHandler()=0;
         virtual void ResolveCollision(Collision<T>& collision, Collection<PointMass<T>*>* container)=0; //Function which handles collision
         virtual std::vector< Collision<T> > DetectCollisions(const Collection<PointMass<T>*>& objects) const =0; //returns a vector of projected collisions
     };
