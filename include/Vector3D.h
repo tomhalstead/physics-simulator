@@ -18,6 +18,7 @@ namespace Vectors {
             // 'Vector3D' is easier to initialize than 'Vector' and is handy for representing 3-D quantities such as
             // position, velocity, force, etc.
     {
+    public:
         Vector3D(T* set);
         Vector3D(const T& defaultValue = T());
         Vector3D(const T& value1, const T& value2, const T &value3);

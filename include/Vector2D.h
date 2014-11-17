@@ -17,6 +17,7 @@ namespace Vectors {
             // 'Vector2D' is easier to initialize than 'Vector' and is handy for representing 2-D quantities such as
             // position, velocity, force, etc.
     {
+    public:
         Vector2D(T* set);
         Vector2D(const T& defaultValue = T());
         Vector2D(const T& value1, const T& value2);

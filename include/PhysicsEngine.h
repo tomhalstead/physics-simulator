@@ -10,7 +10,7 @@
 namespace PhysicsEngine {
 
     template <typename T = double>
-    class System
+    class System: private CollectionParent<T>
             // A 'PhysicsEngine' object, is a universe, that contains 'PointMass' objects or their descendents. The 'PhysicsEngine'
             // object starts with no 'PointMass's. 'PointMass' objects are added with the addPointMass() function and can also be
             // removed if needed. Each time the 'PhysicsEngine' advance() function is called, all the pointMasses are updated
@@ -25,7 +25,8 @@ namespace PhysicsEngine {
             // due to gravity from this force (like a baseball and bowling ball would near the surface of the earth).
     {
     public:
-        System();
+        System(CollisionHandler<T>* initHandler = NULL);
+        virtual ~System();
         void setGravityField(const Vectors::Vector3D<T> &initGravityField);
         const Vectors::Vector3D<T>& getGravityField() const;
         // The gravity field is a universal acceleration due to gravity (represented by 'gravityField' internally).
@@ -49,15 +50,133 @@ namespace PhysicsEngine {
         // 'PhysicsEngine''s collision engine. When a collision engine is set, the collision engine is given direct access to
         // 'pointMasses' vector (in order to fulfill it's duties).
 
-        const Collection<PointMass<T>*> PointMasses() const { return pointMasses; }
-        Collection<PointMass<T>*>& PointMasses() { return pointMasses; }
+        const Collection<PointMass<T>*> PointMasses() const;
+        Collection<PointMass<T>*>& PointMasses();
 
     private:
+        virtual bool ItemAdded(Collection<T>* origin, const T& item);
+        virtual bool ItemRemoved(Collection<T>* origin, const Collection_iterator<T>& position);
+
         Collection<PointMass<T>*> pointMasses;
         Vectors::Vector3D<T> gravityField;
         CollisionHandler<T> *collisionHandler;
     };
+
+    template <typename T>
+    System<T>::System(CollisionHandler<T> *initHandler) {
+
+
+
+
+
+
+    }
+
+
+    template <typename T>
+    System<T>::~System() {
+
+
+
+
+
+
+    }
+
+    template <typename T>
+    void System<T>::setGravityField(const Vectors::Vector3D<T> &initGravityField) {
+
+
+
+    }
+
+
+    template <typename T>
+    const Vectors::Vector3D<T>& System<T>::getGravityField() const {
+
+
+    }
+
+    template <typename T>
+    void System<T>::setCollisionEngine(CollisionHandler<T> *initHandler) {
+
+
+
+    }
+
+    template <typename T>
+    const Collection<PointMass<T>*> System<T>::PointMasses() const {
+        return pointMasses;
+
+
+    }
+
+    template <typename T>
+    Collection<PointMass<T>*>& System<T>::PointMasses() {
+        return pointMasses;
+
+
+    }
+
+    template <typename T>
+    bool System<T>::ItemAdded(Collection<T>* origin, const T& item) {
+
+
+
+
+
+
+
+
+    }
+
+    template <typename T>
+    bool System<T>::ItemRemoved(Collection<T>* origin, const Collection_iterator<T>& position) {
+
+
+
+
+
+
+
+    }
+
+
+    template <typename T>
+    void System<T>::Advance(T timeSlice) {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
 }
+
+
 
 
 

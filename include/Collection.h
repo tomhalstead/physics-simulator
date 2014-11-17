@@ -8,6 +8,8 @@ template <typename T> class Collection;
 
 template <class T>//, class Iterator>
 struct CollectionParent {
+    friend class Collection<T>;
+private:
     /* Returning false from any of these functions will cancel
      * modification of the collection */
     virtual bool ItemAdded(Collection<T>* origin, const T& item)=0;

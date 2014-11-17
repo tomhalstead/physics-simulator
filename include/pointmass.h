@@ -34,17 +34,11 @@ namespace PhysicsEngine {
         const Vectors::Vector3D<T>& getNetForce() const;
         T getMass() const;
 
-        Vectors::Vector3D<T> getTrajectory(T time) const;
-        // This function returns a 'Vector3D' representing the new position of the calling 'PointMass' object after
-        // 'time' seconds, given a constant force ('netForce') applied over that time period.
-        //
-        // Perhaps should be called 'calculateTrajectory' to indicate that the returned object is not representing internal
-        // data, but rather is computed every time the function is called. Perhaps should be called 'calculateNewPosition'
-        // or 'calculateNextPosition' to more clearly show what is being represented by the returned value.
+        Vectors::Vector3D<T> getDisplacement(T time) const;
+        // Returns the final position of the point mass if it were to travel for 'time' units of time.
 
         void advance(T time);
-        // Updates position and velocity of the point mass to what they should be after having 'netForce' force
-        // applied for 'time' seconds.
+        // Changes the position of the point mass by applying net force and velocity for 'time' units of time.
 
     private:
         Vectors::Vector3D<T> position;
