@@ -1,32 +1,23 @@
 Physics Simulator
-<b></i>FORKED FOR FAKE PI DAY BY Eli Selkin</i></b>
+
+Fall 2014
 =================
-e-mail: <a href="mailto:eselkin@go.pasadena.edu?body=I don't know how to add myself, send Git Info!"> Send e-mail to Eli </a>
 
+We're going to (hopefully) get the project to a fully-functinal (though not fully-featured) state this semester.  It is getting late in the semester, but as long as everyone sticks with it, we can very reasonably finish before the end of the month.
 
-
-<font color=red>Ultimate short term focus: complete major functions by April 1, 2014. Great for April fools and enough time to debug! </font>
-
-
-
-_Example:_
-Contributors:\[ENTER\](*Your Name*) will display:
-<b>Contributors:(*Your Name*)</b>
-
-Contributors:\[SPACE\]\[SPACE\]\[ENTER\](Your Name) will display:
-<b>Contributors:
-(Your Name)</b>
-
-<br/>
-<br/>
-####Contributors:
-Jake Kosberg (node-)
-Sage Wang
-Jeffrey Thompson
-Eli Selkin
-Ken Luo
-Kelvin Silva
-Luis Romero
-Davina Boedijono
-Tony Lim
-Francisco Franco
+Minimum Goals:
+<ul>
+<li>Create a pre-set collection of discrete point masses
+<li>Draw the masses in 3D space
+<li>Simulate the gravitational interactions between these masses in real-time
+<li>Move around with-in the scene through keyboard and/or mouse driven "camera" controls
+<li>Basic, completely elastic collisions regarding only the center of mass
+</ul>
+  
+If the project moves along well or enough people express interest in contributing, I would like to add the following:
+<ul>
+<li>Support saving/loading the masses to/from a file
+<li>Support directly manipulating the scene through the GUI
+<li>More advanced collision: including geometry,  inelastic properties of the masses, potential absorption (deleting one of the masses)
+</ul>
+  
