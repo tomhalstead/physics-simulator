@@ -128,7 +128,7 @@ namespace Vectors {
         // ASSIGNMENT OPERATOR
         if (this == RHS)
             return *this;
-        if (this->storage != NULL)
+        if (this->storage)
             delete [] this; // we are assuming size > 0
         storage = new T[size]; // ensuring correct size of Vector values
         for (int i = 0; i < size; i++)
@@ -145,7 +145,7 @@ namespace Vectors {
     Vector<T, size>::~Vector()
     {
         // DESTRUCTOR
-        if (storage != NULL && size > 0)
+        if (storage)
         {
             delete [] storage; // is there a destroy PointMass callback?
         }

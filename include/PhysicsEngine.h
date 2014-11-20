@@ -3,7 +3,6 @@
 #define PHYSICSENGINE_H
 
 #include "Collection.h"
-#include "Vectors.h"
 #include "PointMass.h"
 #include "CollisionEngine.h"
 
@@ -25,6 +24,9 @@ namespace PhysicsEngine {
             // due to gravity from this force (like a baseball and bowling ball would near the surface of the earth).
     {
     public:
+
+        typedef void (*ForceFunction)(PointMass<T>&,PointMass<T>&);
+
         System(CollisionHandler<T>* initHandler = NULL);
         virtual ~System();
         void setGravityField(const Vectors::Vector3D<T> &initGravityField);
@@ -32,7 +34,7 @@ namespace PhysicsEngine {
         // The gravity field is a universal acceleration due to gravity (represented by 'gravityField' internally).
         // This acceleration is applied to all pointMasses.
 
-        void setCollisionEngine(CollisionHandler<T> *initHandler);
+        void setCollisionHandler(CollisionHandler<T> *initHandler);
         void Advance(T timeSlice);
         // When calling the advance() function, the collision engine determines if collisions occur, and if they
         // do, alters appropriate 'PointMass' data. Two examples of what the collision engine might do (depending
@@ -53,11 +55,15 @@ namespace PhysicsEngine {
         const Collection<PointMass<T>*> PointMasses() const;
         Collection<PointMass<T>*>& PointMasses();
 
+        const Collection<ForceFunction> Forces() const;
+        Collection<ForceFunction> Forces();
+
     private:
         virtual bool ItemAdded(Collection<T>* origin, const T& item);
         virtual bool ItemRemoved(Collection<T>* origin, const Collection_iterator<T>& position);
 
         Collection<PointMass<T>*> pointMasses;
+        Collection<ForceFunction> forces;
         Vectors::Vector3D<T> gravityField;
         CollisionHandler<T> *collisionHandler;
     };
@@ -98,7 +104,7 @@ namespace PhysicsEngine {
     }
 
     template <typename T>
-    void System<T>::setCollisionEngine(CollisionHandler<T> *initHandler) {
+    void System<T>::setCollisionHandler(CollisionHandler<T> *initHandler) {
 
 
 
